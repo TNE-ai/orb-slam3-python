@@ -4,7 +4,7 @@ project(_orb_slam3 LANGUAGES CXX)
 add_subdirectory(pybind11)
 
 pybind11_add_module(
-  _orb_slam3
+  ${PROJECT_NAME}
   ${CMAKE_CURRENT_LIST_DIR}/orb_slam3/system.cc
 )
 
@@ -22,6 +22,6 @@ include_directories(
 )
 
 target_link_libraries(
-  _orb_slam3
+  ${PROJECT_NAME}
   PRIVATE ORB_SLAM3
 )

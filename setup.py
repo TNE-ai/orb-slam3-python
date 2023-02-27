@@ -1,6 +1,7 @@
 import os
 import sys
 import subprocess
+import shutil
 from pathlib import Path
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
@@ -29,16 +30,21 @@ class CMakeBuild(build_ext):
             f"-DCMAKE_BUILD_TYPE={cfg}",
         ]
 
-        build_args = [
-            f"-j{os.cpu_count()}"
-        ]
+        build_args = []
+
+        if "CMAKE_BUILD_PARALLEL_LEVEL" not in os.environ:
+            # self.parallel is a Python 3 only way to set parallel jobs by hand
+            # using -j in the build_ext call, not supported by pip or PyPA-build.
+            if hasattr(self, "parallel") and self.parallel:
+                # CMake 3.12+ only.
+                build_args += [f"-j{self.parallel}"]
 
         if "CMAKE_ARGS" in os.environ:
             cmake_args += [x for x in os.environ["CMAKE_ARGS"].split(" ") if x]
 
         build_temp = Path(self.build_temp) / ext.name
         if not build_temp.exists():
-            build_temp.mkdir(parents=True)
+          build_temp.mkdir(parents=True)
 
         subprocess.run(
             ["cmake", ext.source_dir, *cmake_args], cwd=build_temp, check=True
@@ -46,7 +52,6 @@ class CMakeBuild(build_ext):
         subprocess.run(
             ["cmake", "--build", ".", *build_args], cwd=build_temp, check=True
         )
-
 
 setup(
     name="orb_slam3",
@@ -59,6 +64,6 @@ setup(
     zip_safe=False,
     extras_require={"test": ["pytest>=6.0"]},
     python_requires=">=3.8",
-    packages=[''],
-    package_data={'': ['ORB_SLAM3/lib/libORB_SLAM3.so']}
+    package_dir={"": "orb_slam3"},
+    package_data={"": ['ORB_SLAM3/lib/*.so']}
 )
