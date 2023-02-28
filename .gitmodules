@@ -1,0 +1,3 @@
+[submodule "vendor/ORB_SLAM3"]
+	path = vendor/ORB_SLAM3
+	url = https://github.com/netdrones/ORB_SLAM3.git
