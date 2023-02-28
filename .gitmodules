@@ -1,3 +1,6 @@
 [submodule "vendor/ORB_SLAM3"]
 	path = vendor/ORB_SLAM3
 	url = https://github.com/netdrones/ORB_SLAM3.git
+[submodule "pybind11"]
+	path = pybind11
+	url = https://github.com/pybind/pybind11.git
