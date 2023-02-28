@@ -10,13 +10,13 @@ pybind11_add_module(
 
 find_package(Python 3.8 COMPONENTS Interpreter Development REQUIRED)
 
-add_subdirectory(ORB_SLAM3)
+add_subdirectory(ORB_SLAM3_)
 
 include_directories(
-  ${PROJECT_SOURCE_DIR}/ORB_SLAM3
-  ${PROJECT_SOURCE_DIR}/ORB_SLAM3/include
-  ${PROJECT_SOURCE_DIR}/ORB_SLAM3/include/CameraModels
-  ${PROJECT_SOURCE_DIR}/ORB_SLAM3/Thirdparty/Sophus
+  ${PROJECT_SOURCE_DIR}/ORB_SLAM3_
+  ${PROJECT_SOURCE_DIR}/ORB_SLAM3_/include
+  ${PROJECT_SOURCE_DIR}/ORB_SLAM3_/include/CameraModels
+  ${PROJECT_SOURCE_DIR}/ORB_SLAM3_/Thirdparty/Sophus
   ${OpenCV_INCLUDE_DIRS}
   ${Pangolin_INCLUDE_DIRS}
 )

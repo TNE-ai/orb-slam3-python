@@ -55,9 +55,9 @@ class CMakeBuild(build_ext):
 
         # FIXME: Install libORB_SLAM3.so and its dependencies
         lib_install_dir = "/usr/local/lib"
-        shutil.copy(os.path.join(os.path.dirname(__file__), "ORB_SLAM3", "lib", "libORB_SLAM3.so"), lib_install_dir)
-        shutil.copy(os.path.join(os.path.dirname(__file__), "ORB_SLAM3", "Thirdparty", "DBoW2", "lib", "libDBoW2.so", lib_install_dir)
-        shutil.copy(os.path.join(os.path.dirname(__file__), "ORB_SLAM3", "Thirdparty", "g2o", "lib", "libg2o.so", lib_install_dir)
+        shutil.copy(os.path.join(os.path.dirname(__file__), "ORB_SLAM3_", "lib", "libORB_SLAM3.so"), lib_install_dir)
+        shutil.copy(os.path.join(os.path.dirname(__file__), "ORB_SLAM3_", "Thirdparty", "DBoW2", "lib", "libDBoW2.so", lib_install_dir)
+        shutil.copy(os.path.join(os.path.dirname(__file__), "ORB_SLAM3_", "Thirdparty", "g2o", "lib", "libg2o.so", lib_install_dir)
 
 setup(
     name="orb_slam3",
