@@ -47,8 +47,9 @@ class CMakeBuild(build_ext):
           build_temp.mkdir(parents=True)
 
         # Build ORB-SLAM3 and dependencies
+        print(os.path.join(Path.cwd(), "vendor", "ORB_SLAM3"))
         subprocess.run(
-            ["./build_libs.sh"], cwd=os.path.join(build_temp, "vendor", "ORB_SLAM3")
+            ["/bin/sh", "build_libs.sh"], cwd=os.path.join(Path.cwd(), "vendor", "ORB_SLAM3")
         )
         # FIXME(rakuto): Workaround for broken linker...
         shutil.copyfile(Path.cwd() / "vendor" / "ORB_SLAM3" / "lib" / "libORB_SLAM3.so", "/usr/local/lib/libORB_SLAM3.so")
