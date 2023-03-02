@@ -168,6 +168,26 @@ namespace orbslam3::python
     return slam_.LoadAtlas(type);
   }
 
+  void System::SaveTrajectoryTUM(const std::string& filename)
+  {
+    slam_.SaveTrajectoryTUM(filename);
+  }
+
+  void System::SaveTrajectoryEuRoC(const std::string& filename)
+  {
+    slam_.SaveTrajectoryEuRoC(filename);
+  }
+
+  void System::SaveKeyFrameTrajectoryTUM(const std::string& filename)
+  {
+    slam_.SaveKeyFrameTrajectoryTUM(filename);
+  }
+
+  void System::SaveKeyFrameTrajectoryEuRoC(const std::string& filename)
+  {
+    slam_.SaveKeyFrameTrajectoryEuRoC(filename);
+  }
+
   PYBIND11_MODULE(_orb_slam3, m)
   {
     m.doc() = "ORB-SLAM3 Python binding";
@@ -194,7 +214,11 @@ namespace orbslam3::python
         .def("is_finished", &System::IsFinished)
         .def("get_image_scale", &System::GetImageScale)
         .def("save_atlas", &System::SaveAtlas)
-        .def("load_atlas", &System::LoadAtlas);
+        .def("load_atlas", &System::LoadAtlas)
+        .def("save_trajectory_tum", &System::SaveTrajectoryTUM)
+        .def("save_keyframe_trajectory_tum", &System::SaveKeyFrameTrajectoryTUM)
+        .def("save_trajectory_euroc", &System::SaveTrajectoryEuRoC)
+        .def("save_keyframe_trajectory_euroc", &System::SaveKeyFrameTrajectoryEuRoC);
   }
 
 } // namespace orbslam3::python
