@@ -35,6 +35,11 @@ namespace orbslam3::python
     void SaveAtlas(int type);
     bool LoadAtlas(int type);
 
+    void System::SaveTrajectoryTUM(const std::string& filename);
+    void System::SaveTrajectoryEuRoC(const std::string& filename);
+    void System::SaveKeyFrameTrajectoryTUM(const std::string& filename);
+    void System::SaveKeyFrameTrajectoryEuRoC(const std::string& filename);
+
   private:
     ORB_SLAM3::System slam_;
   };
